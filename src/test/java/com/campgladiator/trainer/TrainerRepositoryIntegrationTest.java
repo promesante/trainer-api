@@ -36,12 +36,28 @@ public class TrainerRepositoryIntegrationTest {
     }
 
     @Test
-    public void whenInvalidName_thenReturnNull() {
+    public void whenInvalidId_thenReturnNull() {
         Trainer alex = new Trainer("Fearless", "Contender", "trainer@campgladiator.com", "5125125120");
         entityManager.persistAndFlush(alex);
 
         Optional<Trainer> optFound = trainerRepository.findById(new Long(100));
         assertThat(optFound.isEmpty());
+    }
+
+    @Test
+    public void givenSetOfTrainers_whenFindAll_thenReturnAllTrainers() {
+        Trainer alex = new Trainer("Alex", "Smith", "alex.smith@campgladiator.com", "5125125120");
+        Trainer john = new Trainer("John", "Doe", "john.doe@campgladiator.com", "5125125120");
+        Trainer joe = new Trainer("Joe", "Green", "joe.green@campgladiator.com", "5125125120");
+
+        entityManager.persist(alex);
+        entityManager.persist(john);
+        entityManager.persist(joe);
+        entityManager.flush();
+
+        Iterable<Trainer> allTrainers = trainerRepository.findAll();
+
+        assertThat(allTrainers).hasSize(3).extracting(Trainer::getFirstName).containsOnly(alex.getFirstName(), john.getFirstName(), joe.getFirstName());
     }
 
 }
