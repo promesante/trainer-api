@@ -18,6 +18,14 @@ import javax.persistence.Id;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Trainer {
+
+    public Trainer(String firstName, String lastName, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
