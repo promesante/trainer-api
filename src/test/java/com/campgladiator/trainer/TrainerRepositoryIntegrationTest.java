@@ -1,5 +1,6 @@
 package com.campgladiator.trainer;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,6 +19,7 @@ public class TrainerRepositoryIntegrationTest {
     @Autowired
     private TrainerRepository trainerRepository;
 
+    @AfterEach
     public void tearDown() {
         trainerRepository.deleteAll();
     }
@@ -25,7 +27,7 @@ public class TrainerRepositoryIntegrationTest {
     @Test
     public void whenFindById_thenReturnTrainer() {
         Trainer found = new Trainer();
-        found.setFirstName("not found");
+        found.setFirstName("Fearless");
 
         Trainer alex = new Trainer("Fearless", "Contender", "trainer@campgladiator.com", "5125125120");
         entityManager.persistAndFlush(alex);

@@ -1,5 +1,7 @@
 package com.campgladiator.trainer;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,12 +22,14 @@ public class TrainerController {
     }
 
     @PostMapping
-    Trainer postTrainer(@RequestBody Trainer trainer) {
-        return trainerRepository.save(trainer);
+    public ResponseEntity<Trainer> postTrainer(@RequestBody Trainer trainer) {
+        HttpStatus status = HttpStatus.CREATED;
+        Trainer saved =  trainerRepository.save(trainer);
+        return new ResponseEntity<>(saved, status);
     }
 
     @GetMapping
-    Iterable<Trainer> getTrainers() {
+    public Iterable<Trainer> getTrainers() {
         return trainerRepository.findAll();
     }
 
