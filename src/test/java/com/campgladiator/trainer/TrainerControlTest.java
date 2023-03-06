@@ -52,11 +52,7 @@ public class TrainerControlTest {
         Trainer alex = new Trainer("Alex", "Smith", "alex.smith@campgladiator.com", "5125125120");
         Trainer john = new Trainer("John", "Doe", "john.doe@campgladiator.com", "5125125120");
         Trainer joe = new Trainer("Joe", "Green", "joe.green@campgladiator.com", "5125125120");
-/*
-        Employee alex = new Employee("alex");
-        Employee john = new Employee("john");
-        Employee bob = new Employee("bob");
- */
+
         List<Trainer> allEmployees = Arrays.asList(alex, john, joe);
 
         given(trainerRepository.findAll()).willReturn(allEmployees);
