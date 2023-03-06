@@ -18,7 +18,7 @@ public class TrainerController {
 
     @GetMapping("/{id}")
     Optional<Trainer> getTrainerById(@PathVariable String id) {
-        return trainerRepository.findById(Long.getLong(id));
+        return trainerRepository.findById(Long.parseLong(id));
     }
 
     @PostMapping
